@@ -1,23 +1,41 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Staff extends Authenticatable
 {
     use Notifiable;
 
+
+/**
+     * モデルと関連しているテーブル
+     *
+     * @var string
+     */
+//Laravelテーブル名をstaffではなくstaffsとして認識して！
+    protected $table = 'staffs';
+    
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+     
+    
+    protected $fillable = [
+        'last_name', 'first_name', 'last_name_hiragana', 'first_name_hiragana', 'email', 'password',
+    ];
+    
+    /*
     protected $fillable = [
         'name', 'email', 'password',
     ];
+    */
 
     /**
      * The attributes that should be hidden for arrays.
