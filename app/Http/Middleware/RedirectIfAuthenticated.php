@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         
-        //ログインしてる時に/loginにアクセスしてきた時のリダイレクト先を指定
+        // ログインしてる時に/loginにアクセスしてきた時のリダイレクト先を指定
         if (Auth::guard($guard)->check() && $guard === 'user') {
             return redirect(RouteServiceProvider::HOME);
         } elseif (Auth::guard($guard)->check() && $guard === 'staff') {

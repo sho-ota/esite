@@ -24,7 +24,7 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     // ログイン認証関連
     
     Auth::routes([
-        'register' => true,
+        'register' => false,
         'reset'    => false,
         'verify'   => false
     ]);
@@ -45,7 +45,7 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
     // ログイン認証関連
     
     Auth::routes([
-        'register' => true,
+        'register' => false,
         'reset'    => false,
         'verify'   => false
     ]);
@@ -63,14 +63,12 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         //   /staff/usersで利用者一覧を表示
         Route::get('users', 'Auth\UsersController@index')->name('users.index');
         
-        
         //   /staff/staffs/createでスタッフ作成フォーム画面を表示
         Route::get('staffs/create', 'Auth\StaffsController@create')->name('staffs.create');
         Route::post('staffs/store', 'Auth\StaffsController@store')->name('staffs.store');
         //   /staff/users/createで利用者作成フォーム画面を表示
         Route::get('users/create', 'Auth\UsersController@create')->name('users.create');
         Route::post('users/store', 'Auth\UsersController@store')->name('users.store');
-        
         
         // TODO: やること
         // 1. larave/uiをいれる

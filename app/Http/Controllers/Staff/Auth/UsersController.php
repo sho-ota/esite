@@ -50,7 +50,7 @@ class UsersController extends Controller
     public function index()
     {
         // 利用者一覧をidの降順で取得
-        $users = User::orderBy('id', 'desc')->paginate(10);
+        $users = User::orderBy('last_name_hiragana')->paginate(100);
 
         // 利用者一覧ビューでそれを表示
         return view('staff.auth.users_index', [

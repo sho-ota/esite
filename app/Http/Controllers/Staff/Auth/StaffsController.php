@@ -51,7 +51,7 @@ class StaffsController extends Controller
         public function index()
     {
         // スタッフ一覧をidの降順で取得
-        $staffs = Staff::orderBy('id', 'desc')->paginate(10);
+        $staffs = Staff::orderBy('last_name_hiragana')->paginate(100);
 
         // スタッフ一覧ビューでそれを表示
         return view('staff.auth.staffs_index', [
