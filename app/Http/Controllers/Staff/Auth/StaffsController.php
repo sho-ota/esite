@@ -3,114 +3,59 @@
 
 namespace App\Http\Controllers\Staff\Auth;
 
+use App\Models\Staff;
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request; //追加
-use Illuminate\Auth\Events\Registered; //追加
-use Illuminate\Support\Facades\Auth; //追加
 
 
 class StaffsController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
-
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+   protected function create()
     {
-        $this->middleware('guest:staff');
-    }
-
-    protected function guard()
-    {
-        return Auth::guard('staff');
-    }
-
-    public function showRegistrationForm()
-    {
-        return view('staff.auth.register');
-    }
-
-
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
+         $staff = new Staff;
         
-        return Validator::make($data, [
-            'last_name' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'last_name_hiragana' => ['required', 'string', 'max:255'],
-            'first_name_hiragana' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        // 利用者作成ビューを表示
+        return view('staff.auth.staffs_create', [
+            'staff' => $staff,
+        ]);
+    }
+    
+    
+    public function store(Request $request)
+    {
+        // バリデーション
+        $request->validate([
+            'last_name'           => 'required|string|max:255',
+            'first_name'          => 'required|string|max:255',
+            'last_name_hiragana'  => 'required|string|max:255',
+            'first_name_hiragana' => 'required|string|max:255',
+            'email'               => 'required|string|email|max:255|unique:users',
+            'password'            => 'required|string|min:8|confirmed',
         ]);
         
         
-        /*
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        */
-        
-    }
+        $staff = new Staff;
+        $staff->last_name = $request->last_name;
+        $staff->first_name = $request->first_name;
+        $staff->last_name_hiragana = $request->last_name_hiragana;
+        $staff->first_name_hiragana = $request->first_name_hiragana;
+        $staff->email = $request->email;
+        $staff->password = bcrypt($request->password);
+        $staff->save();
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
+        // 前のURLへリダイレクトさせる
+        return back();
+    }
+   
+   
+        public function index()
     {
-        
-        return User::create([
-            'last_name' => $data['last_name'],
-            'first_name' => $data['first_name'],
-            'last_name_hiragana' => $data['last_name_hiragana'],
-            'first_name_hiragana' => $data['first_name_hiragana'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        // スタッフ一覧をidの降順で取得
+        $staffs = Staff::orderBy('id', 'desc')->paginate(10);
+
+        // スタッフ一覧ビューでそれを表示
+        return view('staff.auth.staffs_index', [
+            'staffs' => $staffs,
         ]);
-        
-        /*
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-        */
     }
 }

@@ -43,6 +43,23 @@
 <a href="/staff/register">
 スタッフ登録(※確認用)
 </a>
+</br>
+</br>
+
+</br>
+{!! link_to_route('staff.users.create', '利用者アカウントcreate(※確認用)', [], ['class' => 'btn btn-primary']) !!}
+
+</br>
+{!! link_to_route('staff.staffs.create', 'スタッフアカウントcreate(※確認用)', [], ['class' => 'btn btn-primary']) !!}
+</br>
+</br>
+<a href="/staff/users">
+利用者一覧(※確認用)
+</a>
+</br>
+<a href="/staff/staffs">
+スタッフ一覧(※確認用)
+</a>
 
                                 
                             </div>

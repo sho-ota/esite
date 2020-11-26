@@ -57,22 +57,20 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
         
-        //Route::get('staffs/create', 'StaffsController@create');
+        
+        //   /staff/staffsでスタッフ一覧を表示
+        Route::get('staffs', 'Auth\StaffsController@index')->name('staffs.index');
+        //   /staff/usersで利用者一覧を表示
+        Route::get('users', 'Auth\UsersController@index')->name('users.index');
         
         
-        // MEMO: ここでスタッフ追加や利用者追加の処理を担うコントローラーのアクションを呼び出す
+        //   /staff/staffs/createでスタッフ作成フォーム画面を表示
+        Route::get('staffs/create', 'Auth\StaffsController@create')->name('staffs.create');
+        Route::post('staffs/store', 'Auth\StaffsController@store')->name('staffs.store');
+        //   /staff/users/createで利用者作成フォーム画面を表示
+        Route::get('users/create', 'Auth\UsersController@create')->name('users.create');
+        Route::post('users/store', 'Auth\UsersController@store')->name('users.store');
         
-        // Staff
-        // MEMO: /staff/staffsでスタッフ一覧を表示
-        // Route::get('staffs', 'StaffsController@index');
-        // MEMO: /staff/staffs/createでスタッフ作成フォーム画面を表示
-        // Route::get('staffs/create', 'StaffsController@create');
-        
-        // User
-        // MEMO: /staff/usersでスタッフ一覧を表示
-        // Route::get('users', 'UsersController@index');
-        // MEMO: /staff/users/createでスタッフ作成フォーム画面を表示
-        // Route::get('users/create', 'UsersController@create');
         
         // TODO: やること
         // 1. larave/uiをいれる

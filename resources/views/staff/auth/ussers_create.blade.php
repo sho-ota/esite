@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="jumbotron text-center">
-        <h1>スタッフ登録</h1>
+        <h1>利用者アカウント作成</h1>
     </div>
 </div>
 
@@ -12,7 +12,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             
-            {!! Form::open(['route' => 'staff.register']) !!}
+            {!! Form::open(['route' => 'staff.users.store']) !!}
                 <div class="form-group">
                     {!! Form::label('last_name', '姓') !!}
                     {!! Form::text('last_name', old('last_name'), ['class' => 'form-control']) !!}
@@ -48,7 +48,7 @@
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('登録', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('アカウント作成', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
                 
         </div>

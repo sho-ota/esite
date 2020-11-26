@@ -13,41 +13,41 @@
 
             {!! Form::open(['route' => 'user.register']) !!}
                 <div class="form-group">
-                    {!! Form::label('last_name', 'Last_name') !!}
+                    {!! Form::label('last_name', '姓') !!}
                     {!! Form::text('last_name', old('last_name'), ['class' => 'form-control']) !!}
                 </div>
                 
                 <div class="form-group">
-                    {!! Form::label('first_name', 'First_name') !!}
+                    {!! Form::label('first_name', '名') !!}
                     {!! Form::text('first_name', old('first_name'), ['class' => 'form-control']) !!}
                 </div>
                 
                 <div class="form-group">
-                    {!! Form::label('last_name_hiragana', 'Last_name_hiragana') !!}
+                    {!! Form::label('last_name_hiragana', 'せい') !!}
                     {!! Form::text('last_name_hiragana', old('last_name_hiragana'), ['class' => 'form-control']) !!}
                 </div>
                 
                 <div class="form-group">
-                    {!! Form::label('first_name_hiragana', 'First_name_hiragana') !!}
+                    {!! Form::label('first_name_hiragana', 'めい') !!}
                     {!! Form::text('first_name_hiragana', old('first_name_hiragana'), ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('email', 'Email') !!}
+                    {!! Form::label('email', 'メール') !!}
                     {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('password', 'Password') !!}
+                    {!! Form::label('password', 'パスワード') !!}
                     {!! Form::password('password', ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('password_confirmation', 'Confirmation') !!}
+                    {!! Form::label('password_confirmation', 'パスワード（確認）') !!}
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('登録', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
                 
         </div>
