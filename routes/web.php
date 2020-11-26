@@ -12,19 +12,23 @@
 */
 
 // MEMO: トップページにアクセスされたら、welcome.blade.phpを表示するという記述
+
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 // 利用者
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
     // ログイン認証関連
+    
     Auth::routes([
         'register' => true,
         'reset'    => false,
         'verify'   => false
     ]);
+    
 
     // ログイン認証後
     Route::middleware('auth:user')->group(function () {
@@ -39,17 +43,22 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
 
     // ログイン認証関連
+    
     Auth::routes([
         'register' => true,
         'reset'    => false,
         'verify'   => false
     ]);
+    
 
     // ログイン認証後
     Route::middleware('auth:staff')->group(function () {
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
+        
+        //Route::get('staffs/create', 'StaffsController@create');
+        
         
         // MEMO: ここでスタッフ追加や利用者追加の処理を担うコントローラーのアクションを呼び出す
         
@@ -72,7 +81,3 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
     });
 
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

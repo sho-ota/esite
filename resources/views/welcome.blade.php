@@ -9,9 +9,16 @@
     <body>
         <div id="app">
             
-            {{-- ナビゲーションバー --}}
-            @include('commons.navbar')
-    
+{{-- ナビゲーションバー --}}
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        eサイト
+                    </a>
+                </div>
+            </nav>
+{{-- ／ナビゲーションバー --}}
+
             <main class="py-4">
                 <div class="content">
                     

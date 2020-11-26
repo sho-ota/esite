@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\User\Auth;
+
+namespace App\Http\Controllers\Staff\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -12,7 +13,8 @@ use Illuminate\Http\Request; //追加
 use Illuminate\Auth\Events\Registered; //追加
 use Illuminate\Support\Facades\Auth; //追加
 
-class RegisterController extends Controller
+
+class StaffsController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -41,22 +43,20 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:user');
-    }
-    
-    
-    // Guardの認証方法を指定
-    protected function guard()
-    {
-        return Auth::guard('user');
+        $this->middleware('guest:staff');
     }
 
-    // 新規登録画面
+    protected function guard()
+    {
+        return Auth::guard('staff');
+    }
+
     public function showRegistrationForm()
     {
-        return view('user.auth.register');
+        return view('staff.auth.register');
     }
-    
+
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -68,13 +68,14 @@ class RegisterController extends Controller
     {
         
         return Validator::make($data, [
-            'last_name'           => ['required', 'string', 'max:255'],
-            'first_name'          => ['required', 'string', 'max:255'],
-            'last_name_hiragana'  => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name_hiragana' => ['required', 'string', 'max:255'],
             'first_name_hiragana' => ['required', 'string', 'max:255'],
-            'email'               => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password'            => ['required', 'string', 'min:8', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        
         
         /*
         return Validator::make($data, [
@@ -83,6 +84,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         */
+        
     }
 
     /**
@@ -93,16 +95,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-         
-        return User::create([
-            'last_name'           => $data['last_name'],
-            'first_name'          => $data['first_name'],
-            'last_name_hiragana'  => $data['last_name_hiragana'],
-            'first_name_hiragana' => $data['first_name_hiragana'],
-            'email'               => $data['email'],
-            'password'            => Hash::make($data['password']),
-        ]);
         
+        return User::create([
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'last_name_hiragana' => $data['last_name_hiragana'],
+            'first_name_hiragana' => $data['first_name_hiragana'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
         
         /*
         return User::create([
