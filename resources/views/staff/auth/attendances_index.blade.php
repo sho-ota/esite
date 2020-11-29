@@ -9,7 +9,7 @@
                 <div class="container mb-3">
                     <div class="row">
                         <div class="col-md-6">
-                            <h1>利用者出欠確認表</h1>
+                            <h1>{{$request_what_day}} 利用者出欠確認表</h1>
                         </div>
                         <div class="col-md-6 text-right">
                             {{-- 通所チェックページへのリンク
@@ -22,7 +22,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>出欠確認</th>
+                                <th>出欠</th>
                                 <th>名前</th>
                                 <th>コメント</th>
                             </tr>
@@ -31,7 +31,7 @@
                             @foreach ($attendances as $attendance)
                             <tr>
                                 <td>{{ $attendance->select}}</td>
-                                <td>{{ $attendance->user_id}}</td>{{--{{ App\Models\User::where('last_name',$attendance->user_id)}}--}}
+                                <td>{{$usersList[$attendance->user_id]["last_name"]}}</td>{{--{{ App\Models\User::where('last_name',$attendance->user_id)}}--}}
                                 <td>{{ $attendance->comment}}</td>
                             </tr>
                             @endforeach

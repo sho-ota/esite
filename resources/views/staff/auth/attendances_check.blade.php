@@ -27,6 +27,24 @@
 <td>{{ $user->id }}</td>
 <td>{{ $user->id }}</td>
 {{--／表示確認用--}}
+
+{!! Form::model($attendance, ['route' => ['user.attendance.update', $attendance->id], 'method' => 'put']) !!}
+                        
+    <div class="form-group">
+        {!! Form::label('select', 'ステータス:') !!}
+        {!! Form::select('select', ['1' => '通所', '2' => '在宅', '3' => '施設外', '4' => '休む'], null, ['placeholder' => '選択してください'])!!}
+    </div>
+    
+    <div class="form-group">
+        {!! Form::label('comment', 'タスク:') !!}
+        {!! Form::text('comment', null, ['class' => 'form-control']) !!}
+    </div>
+
+    {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
+
+{!! Form::close() !!}
+
+
                 </tr>
                 @endforeach
             </tbody>

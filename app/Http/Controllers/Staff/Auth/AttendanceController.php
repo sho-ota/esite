@@ -20,15 +20,25 @@ class AttendanceController extends Controller
         
         $attendances = Attendance::where('what_day',$request_what_day)->get();
         
+        $users = User::all();
+        
+        $usersList = [];
+            foreach($users as $user){
+                $usersList[$user->id] = $user;
+            }
+        
+        //dd($usersList[1]["last_name"]);
+        
         /*
         // 利用者一覧をidの降順で取得
         $users = User::orderBy('last_name_hiragana')->paginate(100);
-*/
+        */
         // 利用者一覧ビューでそれを表示
         return view('staff.auth.attendances_index', [
             //'users'            => $users,
             'attendances'      => $attendances,
             'request_what_day'  => $request_what_day,
+            'usersList'             => $usersList,
         ]);
         
     }
