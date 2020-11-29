@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <div class="jumbotron text-center">
+    <div class="text-center">
         <h1>eサイト</h1>
         <p>メンバーログイン</p>
     </div>
@@ -11,7 +11,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-5">
             
             {!! Form::open(['route' => 'user.login']) !!}
                 <div class="form-group">

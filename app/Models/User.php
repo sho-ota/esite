@@ -44,4 +44,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    
+    //この利用者が持つ出欠確認結果
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
+    
 }

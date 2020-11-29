@@ -12,11 +12,11 @@ class StaffsTableSeeder extends Seeder
     public function run()
     {
         DB::table('staffs')->insert([
-            'last_name'  => 'sl111',
-            'first_name' => 'sf111',
-            'last_name_hiragana' => 'slh111',
-            'first_name_hiragana' => 'sfh111',
-            'email'             => 's@s.s',
+            'last_name'  => '山田',
+            'first_name' => '花太郎',
+            'last_name_hiragana' => 'やまだ',
+            'first_name_hiragana' => 'はなたろう',
+            'email'             => '1@1.1',
             'password'          => Hash::make('11111111'),
             'remember_token'    => Str::random(10),
         ]);

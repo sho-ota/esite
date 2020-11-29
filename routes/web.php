@@ -35,7 +35,14 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
         // TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
-
+        
+        Route::resource('user/attendance', 'Auth\AttendanceController');
+        /*
+        Route::group(['prefix' => '/{id}'], function () {
+            Route::show('user/attendance', 'Auth\AttendanceController')->name('user.attendance.show');
+            Route::update('user/attendance', 'Auth\AttendanceController')->name('user.attendance.update');
+        });
+        */
     });
 });
 
@@ -70,6 +77,16 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         Route::get('users/create', 'Auth\UsersController@create')->name('users.create');
         Route::post('users/store', 'Auth\UsersController@store')->name('users.store');
         
+        
+        Route::name('user.')->group(function () {
+            // 利用者出欠確認表新規作成
+            Route::resource('user/attendances', 'Auth\AttendanceController');
+        });
+        
+                    /*
+                    Route::get('users/attendance/create', 'Auth\AttendanceController@create')->name('users.attendance.create');
+                    Route::post('users/attendance/store', 'Auth\AttendanceController@store')->name('users.attendance.store');
+                    */      
         // TODO: やること
         // 1. larave/uiをいれる
         // 2. StaffsControllerとUsersControllerを作成する

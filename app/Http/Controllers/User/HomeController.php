@@ -4,6 +4,9 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Attendance;
+
 
 class HomeController extends Controller
 {
@@ -23,7 +26,14 @@ class HomeController extends Controller
     public function index()
     {
 // 追加した
-        return view('user.home');
+        $user = \Auth::user();
+        
+        $attendance = $user->attendances()->orderByDesc('created_at')->first();
+        
+        return view('user.home', [
+            'attendance' => $attendance,
+            'user' => $user, 
+        ]);
     }
     
 
@@ -56,7 +66,7 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

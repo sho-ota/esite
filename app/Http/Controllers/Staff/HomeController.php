@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -22,7 +23,14 @@ class HomeController extends Controller
     
     public function index()
     {
-// 追加した
-        return view('staff.home');
+        $what_days = DB::table('attendances')
+        ->select('what_day')
+        ->groupBy('what_day')
+        ->get();
+        
+        return view('staff.home', [
+            'what_days' => $what_days,
+        ]);
+        
     }
 }
