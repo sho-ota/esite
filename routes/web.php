@@ -52,7 +52,7 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
     // ログイン認証関連
     
     Auth::routes([
-        'register' => false,
+        'register' => true,
         'reset'    => false,
         'verify'   => false
     ]);
