@@ -31,7 +31,7 @@
                             @foreach ($attendances as $attendance)
                             <tr>
                                 <td>{{ $attendance->select}}</td>
-                                <td>{{$usersList[$attendance->user_id]["last_name"]}}</td>{{--{{ App\Models\User::where('last_name',$attendance->user_id)}}--}}
+                                <td>{{$usersList[$attendance->user_id]["last_name"]}}</td>
                                 <td>{{ $attendance->comment}}</td>
                             </tr>
                             @endforeach

@@ -15,6 +15,9 @@
                 <div class="card-body">
                     
                         <div class="form-group">
+{{--日付を入力し新規作成した時、利用者の各ページに出欠確認ボタンが生成されるが、
+その下にある日付一覧が更新されないためエラーが起きる様子、AttendanceController＠storeのreturnに
+HomeController＠indexを動かす記述を書けば良い？--}}
                             {!! Form::open(['route' => 'staff.user.attendances.store']) !!}
                                 {!! Form::label('what_day', '日付を入力してください 例:2020-12-01 ') !!}
                                 {!! Form::text('what_day', old('what_day'), ['class' => 'form-control']) !!}
@@ -32,7 +35,7 @@
                             @foreach ($what_days as $what_day)
                             <tr>
                                 <td>
-                                    <a href="{{route("staff.user.attendances.index", ['what_day'=>$what_day->what_day])}}" >{{$what_day->what_day}}</a>
+                                    <a href="{{route('staff.user.attendances.index', ['what_day'=>$what_day->what_day])}}" >{{$what_day->what_day}}</a>
                                     {{--　↓この書き方だと失敗した
                                     {!! Form::model($what_day->what_day, ['route' => ['staff.user.attendances.index', $what_day->what_day], 'method' => 'put']) !!}
                                     {!! link_to_route('staff.user.attendances.index', $what_day->what_day, []) !!}
