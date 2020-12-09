@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttendancesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateAttendancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->date('what_day');
-            //$table->string('comment')->nullable();
-            $table->integer('select')->nullable();
+            $table->unsignedBigInteger('speaker_id');
+            $table->string('content');
             $table->timestamps();
+            
+            // 外部キー制約
+            //$table->foreign('speaker_id')->references('id')->on('users');
         });
     }
 
@@ -30,6 +31,6 @@ class CreateAttendancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('messages');
     }
 }

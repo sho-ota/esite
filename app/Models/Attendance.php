@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attendance extends Model
 {
-    protected $fillable = ['what_day'];
+    protected $fillable = ['what_day','select'];
     
     
     //この出欠確認データを有する利用者

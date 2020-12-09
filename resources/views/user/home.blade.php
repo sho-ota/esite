@@ -31,23 +31,25 @@
                     <div class="">
                         <p>動作確認用</p>
                         
-                        <div>
-                            {{ $attendance }} 
-                        </div>
-                        </br>
-                        </br>
+    <div>
+        {{ $attendance }} 
+    </div>
+    </br>
+    </br>
                         
                         {!! Form::model($attendance, ['route' => ['user.attendance.update', $attendance->id], 'method' => 'put']) !!}
                         
                             <div class="form-group">
                                 {!! Form::label('select', 'ステータス:') !!}
-                                {!! Form::select('select', ['1' => '通所', '2' => '在宅', '3' => '施設外', '4' => '休む'], null, ['placeholder' => '選択してください'])!!}
+                                {!! Form::select('select', ['0' => '選択してください', '1' => '通所する', '2' => '在宅ワーク', '3' => '施設外', '4' => '休む'], '0')!!}
+                                {{--{!! Form::select('select', ['0' => '通所', '1' => '在宅', '2' => '施設外', '3' => '休む'], null, ['placeholder' => '選択してください'])!!}--}}
                             </div>
-                            
+                            {{--
                             <div class="form-group">
                                 {!! Form::label('comment', 'タスク:') !!}
                                 {!! Form::text('comment', null, ['class' => 'form-control']) !!}
                             </div>
+                            --}}
                         
                             {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
                         

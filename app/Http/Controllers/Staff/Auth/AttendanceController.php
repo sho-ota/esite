@@ -21,6 +21,8 @@ class AttendanceController extends Controller
         foreach ($users as $user) {
             $user->attendances()->create([
                 'what_day' => $request->what_day,
+                //selectカラムに初期値を設定
+                'select' => '0',
             ]);
         }
         
@@ -53,6 +55,8 @@ class AttendanceController extends Controller
                 $usersList[$user->id] = $user;
             }
         
+        $attendanceList = ['', '通所する', '在宅ワーク', '施設外', '休む'];
+
         //dd($usersList[1]["last_name"]);
         
         /*
@@ -61,8 +65,9 @@ class AttendanceController extends Controller
         */
         return view('staff.auth.attendances_index', [
             'attendances'      => $attendances,
-            'request_what_day'  => $request_what_day,
-            'usersList'             => $usersList,
+            'request_what_day' => $request_what_day,
+            'usersList'        => $usersList,
+            'attendanceList'   => $attendanceList,
         ]);
         
     }

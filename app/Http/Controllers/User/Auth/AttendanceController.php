@@ -27,14 +27,14 @@ class AttendanceController extends Controller
         // バリデーション
         $request->validate([
             'select' => 'required|max:1',
-            'comment' => 'required|max:255',
+            //'comment' => 'required|max:255',
         ]);
         
         // idの値でメッセージを検索して取得
         $attendance = Attendance::findOrFail($id);
         // 出欠確認データを更新
         $attendance->select = $request->select;
-        $attendance->comment = $request->comment;
+        //$attendance->comment = $request->comment;
         $attendance->save();
 
         // トップページへリダイレクトさせる
