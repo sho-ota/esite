@@ -38,7 +38,7 @@ class AttendanceController extends Controller
         $attendance->save();
 
         // トップページへリダイレクトさせる
-        return redirect('/');
+        return redirect('user/home');
     }
 
 

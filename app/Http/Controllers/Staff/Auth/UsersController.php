@@ -42,8 +42,7 @@ class UsersController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        // 前のURLへリダイレクトさせる
-        return back();
+        return redirect('staff/users');
     }
     
     
@@ -57,4 +56,46 @@ class UsersController extends Controller
             'users' => $users,
         ]);
     }
+    
+
+    //利用者アカウント編集    
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+    
+        return view('staff.auth.user_edit', [
+            'user' => $user,
+        ]);
+    }
+    
+    // 利用者アカウント情報の「更新処理」
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        
+        $user->last_name = $request->last_name;
+        $user->first_name = $request->first_name;
+        $user->last_name_hiragana = $request->last_name_hiragana;
+        $user->first_name_hiragana = $request->first_name_hiragana;
+        $user->email = $request->email;
+        $user->save();
+    
+        return redirect('staff/users');
+/*
+メールアドレスが他の人と重複している場合エラーが出てしまうのでそれを処理する必要ありバリデーションを使用？
+*/
+    }
+
+    
+    // 利用者アカウントの削除
+    public function destroy($id)
+    {
+
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        return redirect('staff/users');
+    }
+    
 }

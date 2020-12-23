@@ -1,28 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// MEMO: トップページにアクセスされたら、welcome.blade.phpを表示するという記述
-
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 
 // 利用者
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
     // ログイン認証関連
-    
     Auth::routes([
         'register' => false,
         'reset'    => false,
@@ -46,11 +33,12 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
     });
 });
 
+
+
 // スタッフ
 Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
 
     // ログイン認証関連
-    
     Auth::routes([
         'register' => true,
         'reset'    => false,
@@ -76,7 +64,16 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         //   /staff/users/createで利用者作成フォーム画面を表示
         Route::get('users/create', 'Auth\UsersController@create')->name('users.create');
         Route::post('users/store', 'Auth\UsersController@store')->name('users.store');
+
+        //利用者アカウント編集＆削除関連
+        Route::get('users/{id}/edit', 'Auth\UsersController@edit')->name('users.edit');
+        Route::put('users/{id}/update', 'Auth\UsersController@update')->name('users.update');
+        Route::delete('users/{id}/destroy', 'Auth\UsersController@destroy')->name('users.destroy');
         
+        //スタッフアカウント編集＆削除関連
+        Route::get('staffs/{id}/edit', 'Auth\StaffsController@edit')->name('staffs.edit');
+        Route::put('staffs/{id}/update', 'Auth\StaffsController@update')->name('staffs.update');
+        Route::delete('staffs/{id}/destroy', 'Auth\StaffsController@destroy')->name('staffs.destroy');
         
         Route::name('user.')->group(function () {
             // 利用者出欠確認表新規作成

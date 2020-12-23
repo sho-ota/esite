@@ -43,8 +43,7 @@ class StaffsController extends Controller
         $staff->password = bcrypt($request->password);
         $staff->save();
 
-        // 前のURLへリダイレクトさせる
-        return back();
+        return redirect('staff/staffs');
     }
    
    
@@ -58,4 +57,47 @@ class StaffsController extends Controller
             'staffs' => $staffs,
         ]);
     }
+    
+    
+//スタッフアカウント編集    
+public function edit($id)
+{
+    $staff = Staff::findOrFail($id);
+
+    return view('staff.auth.staff_edit', [
+        'staff' => $staff,
+    ]);
+}
+
+// スタッフアカウント情報の「更新処理」
+public function update(Request $request, $id)
+{
+    $staff = Staff::findOrFail($id);
+    
+    $staff->last_name = $request->last_name;
+    $staff->first_name = $request->first_name;
+    $staff->last_name_hiragana = $request->last_name_hiragana;
+    $staff->first_name_hiragana = $request->first_name_hiragana;
+    $staff->email = $request->email;
+    $staff->save();
+
+    return redirect('staff/staffs');
+/*
+メールアドレスが他の人と重複している場合エラーが出てしまうのでそれを処理する必要ありバリデーションを使用？
+*/
+}
+
+
+// スタッフアカウントの削除
+public function destroy($id)
+{
+
+    $staff = Staff::findOrFail($id);
+
+    $staff->delete();
+
+    return redirect('staff/staffs');
+}
+
+    
 }

@@ -26,6 +26,7 @@
                                 <th>名前</th>
                                 <th>なまえ</th>
                                 <th>メール</th>
+                                <th>編集</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,6 +35,7 @@
                                 <td>{{ $staff->last_name }} {{ $staff->first_name }}</td>
                                 <td>{{ $staff->last_name_hiragana }} {{ $staff->first_name_hiragana }}</td>
                                 <td>{{ $staff->email }}</td>
+                                <td>{!! link_to_route('staff.staffs.edit', $staff->id, [$staff->id], ['class' => 'btn btn-primary']) !!}</td>
                             </tr>
                             @endforeach
                         </tbody>
