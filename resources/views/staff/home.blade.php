@@ -43,24 +43,22 @@ HomeController＠indexを動かす記述を書けば良い？--}}
                                     {!! Form::close() !!}
                                     --}}
                                 </td>
+                {{-- what_dayグループ削除 確認用 --}}
+                                <td>
+                                    {!! Form::model($what_day, ['route' => ['staff.user.attendances.destroy',$what_day->what_day], 'method' => 'delete']) !!}
+                                        {{Form::hidden('what_day',$what_day->what_day)}}
+                                        {!! Form::submit("削除", ['class' => 'btn btn-danger']) !!}
+                                    {!! Form::close() !!}
+                                    
+                                </td>
+                {{-- //what_dayグループ削除 確認用 --}}
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 @endif
             </div>
-            
-            
-            
         </div>
     </div>
 </div>
 @endsection
-
-{{--
-
-    {!! Form::model($what_day->what_day, ['route' => ['staff.user.attendances.index', $what_day->what_day], 'method' => 'get']) !!}
-        {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
-    {!! Form::close() !!}
-    
-    --}}

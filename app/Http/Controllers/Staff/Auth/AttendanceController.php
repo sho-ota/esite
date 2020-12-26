@@ -36,6 +36,7 @@ class AttendanceController extends Controller
     */
     public function index(Request $request)
     {
+        //dd($request);
         
         $request_what_day = $request->input('what_day');
         
@@ -73,32 +74,13 @@ class AttendanceController extends Controller
     }
  
     
-    public function create()
+    // 利用者出欠確認データwhat_dayグループごとに選択し削除
+    public function destroy(Request $request)
     {
-        //
-    }
-    
-    
-    public function show($request)
-    {
+        $what_day = $request->input('what_day');
         
-    }
-
-    
-    public function edit($id)
-    {
-        //
-    }
-
-    
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    
-    public function destroy($id)
-    {
-        //
+        Attendance::where('what_day', $request->what_day)->delete();
+        
+        return redirect('staff/home');
     }
 }
