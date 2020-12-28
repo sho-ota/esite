@@ -36,34 +36,40 @@ class AttendanceController extends Controller
     */
     public function index(Request $request)
     {
-        //dd($request);
-        
         $request_what_day = $request->input('what_day');
         
         //$requestに入ったwhat_dayの値が入ったattendanceのレコードを一覧表示する。
         $attendances = Attendance::where('what_day',$request_what_day)->get();
-        
-        //利用者のデータを全て取得
-        $users = User::all();
-        
-        /*
-        $usersListに各ユーザのidを配列として持たせて、
-        viewで$usersListの中から、attendance->user_idでユーザを特定し、
-        そのlast_nameを取り出す
-        */
+
+
         $usersList = [];
-            foreach($users as $user){
-                $usersList[$user->id] = $user;
-            }
-        
+        foreach($attendances as $attendance){
+            $user = User::findOrFail($attendance->user_id);
+            $usersList[$user->id] = $user; 
+        }
+        //dd($usersList[1]["last_name"]);
+
+                    /*  利用者のデータを全て取得した場合のやり方--------------------------------------------------------------
+                    $users = User::all();
+                    
+                    //$usersListに各ユーザのidを配列として持たせて、
+                    //viewで$usersListの中から、attendance->user_idでユーザを特定し、
+                    //そのlast_nameを取り出す
+                    
+                    $usersList = [];
+                    foreach($users as $user){
+                        $usersList[$user->id] = $user;
+                    }
+                    
+                    //dd($usersList[3]["last_name"]);
+                    //dd($usersList);
+                    
+                    利用者一覧をidの降順で取得
+                    $users = User::orderBy('last_name_hiragana')->paginate(100);
+                    ---------------------------------------------------------------------------------------------------*/
+
         $attendanceList = ['', '通所する', '在宅ワーク', '施設外', '休む'];
 
-        //dd($usersList[1]["last_name"]);
-        
-        /*
-        利用者一覧をidの降順で取得
-        $users = User::orderBy('last_name_hiragana')->paginate(100);
-        */
         return view('staff.auth.attendances_index', [
             'attendances'      => $attendances,
             'request_what_day' => $request_what_day,
@@ -72,8 +78,8 @@ class AttendanceController extends Controller
         ]);
         
     }
+
  
-    
     // 利用者出欠確認データwhat_dayグループごとに選択し削除
     public function destroy(Request $request)
     {
