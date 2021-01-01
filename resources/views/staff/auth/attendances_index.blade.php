@@ -9,7 +9,7 @@
                 <div class="container mb-3">
                     <div class="row">
                         <div class="col-md-6">
-                            <h1>{{$request_what_day}} 利用者出欠確認表</h1>
+                            <p>{{$request_what_day}} 利用者出欠確認表</p>
                         </div>
                         <div class="col-md-6 text-right">
                             {{-- 通所チェックページへのリンク

@@ -7,16 +7,9 @@
             <div class="col-md-8">
                 @include('staff.auth.nav_tabs')
                 
-                <div class="container mb-3">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h1>利用者一覧</h1>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            {{-- 利用者アカウント作成ページへのリンク --}}
-                            {!! link_to_route('staff.users.create', '利用者アカウント作成', [], ['class' => 'btn btn-primary']) !!}
-                        </div>
-                    </div>
+                <div class="mb-2">
+                    {{-- 利用者アカウント作成ページへのリンク --}}
+                    {!! link_to_route('staff.users.create', '利用者アカウント作成', [], ['class' => 'btn btn-info btn-block']) !!}
                 </div>
                 
                 @if (count($users) > 0)
@@ -35,12 +28,12 @@
                             @foreach ($users as $user)
                             <tr>
                                 {{--user.attendance.indexでやろうとするとauthが面倒なので、staff.user.attendances.showなどを使って新たにページを作ったほうが良さそう--}}
-                                <td>{!! link_to_route('user.attendance.index', $user->last_name.' '.$user->first_name, [], ['class' => 'btn btn-primary']) !!}</td>
+                                <td>{!! link_to_route('user.attendance.index', $user->last_name.' '.$user->first_name, [], ['class' => 'btn btn-info btn-sm']) !!}</td>
                                 <td>{{ $user->last_name }} {{ $user->first_name }}</td>
                                 <td>{{ $user->last_name_hiragana }} {{ $user->first_name_hiragana }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{!! link_to_route('staff.users.edit', $user->id, [$user->id], ['class' => 'btn btn-primary']) !!}</td>
-                                <td>{!! link_to_route('staff.users.show', $user->id, [$user->id], ['class' => 'btn btn-primary']) !!}</td>
+                                <td>{!! link_to_route('staff.users.edit', $user->id, [$user->id], ['class' => 'btn btn-info btn-sm']) !!}</td>
+                                <td>{!! link_to_route('staff.users.show', $user->id, [$user->id], ['class' => 'btn btn-info btn-sm']) !!}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -49,8 +42,8 @@
                 
                 {{-- ページネーションのリンク--}}
                 {{ $users->links() }}
+                
             </div>
         </div>
     </div>
-
 @endsection

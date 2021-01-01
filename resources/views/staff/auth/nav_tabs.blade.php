@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs nav-justified mb-3">
+<ul class="nav nav-tabs mb-3">
     {{-- 利用者一覧タブ --}}
     <li class="nav-item">
         <a href="{{ route('staff.users.index') }}" class="nav-link {{ Request::routeIs('staff.users.index') ? 'active' : '' }}">

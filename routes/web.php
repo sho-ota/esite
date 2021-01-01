@@ -26,6 +26,9 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         
         //出欠確認データ
         Route::resource('user/attendance', 'Auth\AttendanceController');
+        
+//利用者のメッセージ
+Route::resource('messages', 'Auth\UserMessagesController');
     });
 });
 
@@ -64,8 +67,12 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         Route::post('users/store', 'Auth\UsersController@store')->name('users.store');
         Route::get('users/{id}/edit', 'Auth\UsersController@edit')->name('users.edit');
         Route::put('users/{id}/update', 'Auth\UsersController@update')->name('users.update');
-Route::get('users/{id}/show', 'Auth\UsersController@show')->name('users.show');
+        Route::get('users/{id}/show', 'Auth\UsersController@show')->name('users.show');
         Route::delete('users/{id}/destroy', 'Auth\UsersController@destroy')->name('users.destroy');
+        
+//スタッフのメッセージ
+Route::resource('messages', 'Auth\StaffMessagesController',);
+        
         
         Route::name('user.')->group(function () {
             //利用者出欠確認情報
