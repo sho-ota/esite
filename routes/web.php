@@ -27,8 +27,8 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         //出欠確認データ
         Route::resource('user/attendance', 'Auth\AttendanceController');
         
-//利用者のメッセージ
-Route::resource('messages', 'Auth\UserMessagesController');
+        //利用者のメッセージ
+        Route::resource('messages', 'Auth\UserMessagesController');
     });
 });
 
@@ -70,8 +70,8 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         Route::get('users/{id}/show', 'Auth\UsersController@show')->name('users.show');
         Route::delete('users/{id}/destroy', 'Auth\UsersController@destroy')->name('users.destroy');
         
-//スタッフのメッセージ
-Route::resource('messages', 'Auth\StaffMessagesController',);
+        //スタッフのメッセージ
+        Route::resource('messages', 'Auth\StaffMessagesController',);
         
         
         Route::name('user.')->group(function () {

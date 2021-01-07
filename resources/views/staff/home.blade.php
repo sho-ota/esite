@@ -4,11 +4,27 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7">
+{{--@include('staff.auth.nav_tabs')--}}
                 <div class="card">
                     <div class="card-header text-center">利用者出欠確認表</div>
     
                     <div class="card-body">
-    {{ Auth::guard('staff')->user()}}
+<a href="{{ route('staff.messages.index') }}">メッセ－ジ</a>
+{{--{!! link_to_route('staff.messages.index', "メッセージ", [Auth::guard('staff')->user()->id], ['class' => 'btn btn-primary']) !!}--}}
+{{--
+{!! Form::model(Auth::guard('staff')->user()->id, ['route' => ['staff.messages.index', Auth::guard('staff')->user()->id], 'method' => 'get']) !!}
+    {!! Form::hidden('id',Auth::guard('staff')->user()->id) !!}
+    {!! Form::submit(Auth::guard('staff')->user()->id, ['class' => 'btn btn-info btn-block btn-sm']) !!}
+{!! Form::close() !!}
+--}}
+--------------------------------------------------------------------</br>
+{{ Auth::guard('staff')->user()->id}}
+{{ Auth::guard('staff')->user()->last_name}}
+{{ Auth::guard('staff')->user()->first_name}}
+{{ Auth::guard('staff')->user()->last_name_hiragana}}
+{{ Auth::guard('staff')->user()->first_name_hiragana}}
+{{ Auth::guard('staff')->user()->email}}</br>
+--------------------------------------------------------------------</br>
                         <div class="form-group">
 {{--日付を入力し新規作成した時、利用者の各ページに出欠確認ボタンが生成されるが、
 その下にある日付一覧が更新されないためエラーが起きる様子、AttendanceController＠storeのreturnに

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Staff;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Staff;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,5 @@ class HomeController extends Controller
         return view('staff.home', [
             'what_days' => $what_days,
         ]);
-        
-        
     }
 }
