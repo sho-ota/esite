@@ -57,16 +57,23 @@ class UsersController extends Controller
         ]);
     }
     
-public function show($id)
-{
-    // idの値でユーザを検索して取得
-    $user = User::findOrFail($id);
+    public function show($id)
+    {
     
-    // ユーザ詳細ビューでそれを表示
-    return view('staff.auth.user_home', [
-        'user' => $user,
-    ]);
-}
+        // idの値でユーザを検索して取得
+        $user = User::findOrFail($id);
+        
+        $attendance = $user->attendances()->orderByDesc('created_at')->first();
+        
+        $attendanceList = ['未入力', '通所する', '在宅ワーク', '施設外', '休む'];
+        
+        // ユーザ詳細ビューでそれを表示
+        return view('staff.auth.user_show', [
+            'user' => $user,
+            'attendance' => $attendance,
+            'attendanceList' => $attendanceList,
+        ]);
+    }
 
     //利用者アカウント編集    
     public function edit($id)

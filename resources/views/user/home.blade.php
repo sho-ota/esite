@@ -19,20 +19,6 @@
                     <div class="card-header text-center text-white bg-danger">{{ $attendance->what_day }}　{{ $user->last_name }} {{ $user->first_name }}　通所スタンプ</div>
     
                     <div class="card-body">
-    {{-- ボタンレイアウト確認
-                        <input class="btn btn-light col-md-12 mb-3" type="button" value="通所">1</br>
-                        <input class="btn btn-light col-md-12 mb-3" type="button" value="在宅">2</br>
-                        <input class="btn btn-light col-md-12 mb-3" type="button" value="施設外">3</br>
-                        <input class="btn btn-light col-md-12 mb-3" type="button" value="休む">4</br>
-                       
-                        
-                    
-                        <div class="form-group">
-                            <label for="exampleFormControlTextarea1">コメント</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            <input class="btn btn-primary col-md-3 mt-3 " type="button" value="送信"></br>
-                        </div>
-     /ボタンレイアウト確認 --}}
      {{--  動作確認--}}
                         <div class="">
                             <p>動作確認用</p>
@@ -47,8 +33,8 @@
                             
                                 <div class="form-group">
                                     {!! Form::label('select', 'ステータス:') !!}
-                                    {!! Form::select('select', ['0' => '選択してください', '1' => '通所する', '2' => '在宅ワーク', '3' => '施設外', '4' => '休む'], '0')!!}
-                                    {{--{!! Form::select('select', ['0' => '通所', '1' => '在宅', '2' => '施設外', '3' => '休む'], null, ['placeholder' => '選択してください'])!!}--}}
+                                    {!! Form::select('select', ['0' => '選択してください', '1' => '通所する', '2' => '在宅ワーク', '3' => '施設外', '4' => '休む'], $attendance->select)!!}
+                                    {{ $attendance->updated_at }}
                                 </div>
                                 {{--
                                 <div class="form-group">

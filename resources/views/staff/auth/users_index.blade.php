@@ -28,7 +28,7 @@
                             @foreach ($users as $user)
                             <tr>
                                 {{--user.attendance.indexでやろうとするとauthが面倒なので、staff.user.attendances.showなどを使って新たにページを作ったほうが良さそう--}}
-                                <td>{!! link_to_route('user.attendance.index', $user->last_name.' '.$user->first_name, [], ['class' => 'btn btn-info btn-sm']) !!}</td>
+                                <td>{!! link_to_route('staff.users.show', $user->last_name.' '.$user->first_name, [$user->id], ['class' => 'btn btn-info btn-sm']) !!}</td>
                                 <td>{{ $user->last_name }} {{ $user->first_name }}</td>
                                 <td>{{ $user->last_name_hiragana }} {{ $user->first_name_hiragana }}</td>
                                 <td>{{ $user->email }}</td>

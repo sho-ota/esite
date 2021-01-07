@@ -12,7 +12,7 @@
             <div class="card ">
                 <div class="card-header text-center text-white bg-danger">出欠確認</div>
 
-                <div class="card-body">
+                <div class="card-body">{{ $attendance->what_day }} {{$attendanceList[$attendance->select]}}</div>
 
                 
             </div>
