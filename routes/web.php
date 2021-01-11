@@ -73,6 +73,9 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         //スタッフのメッセージ
         Route::resource('messages', 'Auth\StaffMessagesController',);
         
+        //スタッフから利用者へのメッセージ
+        Route::post('messages/for_users/{id}/store', 'Auth\StaffMessageForUserController@store')->name('message.for.user.store');
+        Route::delete('messages/for_users/{id}/destroy', 'Auth\StaffMessageForUserController@destroy')->name('message.for.user.destroy');
         
         Route::name('user.')->group(function () {
             //利用者出欠確認情報

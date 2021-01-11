@@ -5,24 +5,11 @@
                 <div class="media-body">
                     <div class="card bg-light">
                         <div class="card-body">
-{{--                            <div style="display:inline-flex">--}}
                             <div class="d-flex justify-content-between">
                                 {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
-                                {{--
-                                <div>
-                                    <span class="text-muted">{{ $staff_message->staff->last_name }} {{ $staff_message->staff->first_name }}</span>
-                                    <span class="text-muted"> {{ $staff_message->created_at }}</span>
-                                </div>
-                                <div>
-                                    <span class="text-muted">@include('messages.staff.delete')</span>
-                                </div>
-                                --}}
-                                
-                                <div>
+                                <div class="d-flex">
                                     <h5><span class="badge badge-info">{{ $staff_message->staff->last_name }} {{ $staff_message->staff->first_name }}</span></h5>
-                                </div>
-                                <div>
-                                    <span class="text-muted"> {{ $staff_message->created_at }}</span>
+                                    <span class="text-muted ml-3"> {{ $staff_message->created_at }}</span>
                                 </div>
                                 <div>
                                     <span class="text-muted">@include('messages.staff.delete')</span>

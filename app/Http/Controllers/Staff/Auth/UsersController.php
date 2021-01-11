@@ -67,11 +67,32 @@ class UsersController extends Controller
         
         $attendanceList = ['未入力', '通所する', '在宅ワーク', '施設外', '休む'];
         
+$user_messages = $user->user_messages()->orderBy('created_at', 'desc')->paginate(15);
+$message_from_staffs = $user->message_from_staffs()->orderBy('created_at', 'desc')->paginate(15);
+        /*
+        $staff_and_user_talks = DB::table('users')
+            ->join('user_messages', 'users.id', '=', 'user_messages.user_id')
+            ->join('staff_message_for_users', 'users.id', '=', 'user_messages.user_id')
+        */
+        /*
+        $users = DB::table('users')
+            ->join('contacts', 'users.id', '=', 'contacts.user_id')
+            ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->select('users.*', 'contacts.phone', 'orders.price')
+            ->get();
+            
+        SELECT * FROM テーブル名1 INNER JOIN テーブル名2 ON テーブル名1.カラム名 = テーブル名2.カラム名;
+        */
+        
+        
+        
         // ユーザ詳細ビューでそれを表示
         return view('staff.auth.user_show', [
             'user' => $user,
             'attendance' => $attendance,
             'attendanceList' => $attendanceList,
+'user_messages' => $user_messages,
+'message_from_staffs' => $message_from_staffs,
         ]);
     }
 

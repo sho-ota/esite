@@ -24,7 +24,7 @@
                             <tr>
                                 {{--<td class="text-right"><span class="badge badge-danger">{{$attendanceList[$attendance->select]}}</span></td>--}}
                                 <td class="text-center">{{$attendanceList[$attendance->select]}}</td>
-                                <td>{{$usersList[$attendance->user_id]["last_name"]}} {{$usersList[$attendance->user_id]["first_name"]}}</td>
+                                <td>{!! link_to_route('staff.users.show', $usersList[$attendance->user_id]["last_name"]." ".$usersList[$attendance->user_id]["first_name"], [$usersList[$attendance->user_id]]) !!}</td>
                             </tr>
                             @endforeach
                         </tbody>

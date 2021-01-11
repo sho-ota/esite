@@ -9,7 +9,6 @@
                     <div class="card-header text-center">利用者出欠確認表</div>
     
                     <div class="card-body">
-<a href="{{ route('staff.messages.index') }}">メッセ－ジ</a>
 {{--{!! link_to_route('staff.messages.index', "メッセージ", [Auth::guard('staff')->user()->id], ['class' => 'btn btn-primary']) !!}--}}
 {{--
 {!! Form::model(Auth::guard('staff')->user()->id, ['route' => ['staff.messages.index', Auth::guard('staff')->user()->id], 'method' => 'get']) !!}

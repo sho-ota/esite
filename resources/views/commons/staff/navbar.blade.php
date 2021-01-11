@@ -23,17 +23,17 @@
                                 <a class="dropdown-item" href="{{ route('staff.home.index') }}">
                                     {{ __('マイページ') }}
                                 </a>
-                                
+                                <a class="dropdown-item" href="{{ route('staff.messages.index') }}">
+                                    {{ __('メッセージ') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('staff.users.index') }}">
                                     {{ __('ユーザ一覧') }}
                                 </a>
-                                
                                 <a class="dropdown-item" href="{{ route('staff.logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
                                     {{ __('ログアウト') }}
                                 </a>
-        
                                 <form id="logout-form" action="{{ route('staff.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>

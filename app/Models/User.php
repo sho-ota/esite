@@ -38,6 +38,10 @@ class User extends Authenticatable
         return $this->hasMany(UserMessage::class);
     }
     
+    public function message_from_staffs()
+    {
+        return $this->belongsToMany(StaffMessage::class, 'staff_message_for_users', 'user_id', 'staff_message_id')->withTimestamps();
+    }
     
     public function loadRelationshipCounts()
     {
