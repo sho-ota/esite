@@ -1,4 +1,4 @@
-@extends('layouts.user.app')
+@extends('layouts.staff.app')
 
 @section('content')
     @if (Auth::check())
@@ -14,13 +14,17 @@
                 </aside>
                 --}}
                 <div class="col-md-6">
+                    
+                    {{-------------------------------
                     @include('user.auth.nav_tabs')
-                    @if (Auth::id() == $user->id)
+                    ---------------------------------}}
+                    @if (Auth::id() == $staff->id)
                         {{-- 投稿フォーム --}}
-                        @include('messages.user.store_form')
+                        @include('messages.staff.store_form')
                     @endif
+                    
     {{-- 投稿一覧 ----------------------------------------------------------}}
-                    @include('messages.user.index')
+                    @include('messages.staff.index')
     {{-- /投稿一覧 ----------------------------------------------------------}}
                 </div>
             </div>

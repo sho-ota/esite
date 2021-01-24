@@ -53,7 +53,6 @@
                 {!! Form::submit('アカウント削除', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
             
-                
         </div>
     </div>
 </div>

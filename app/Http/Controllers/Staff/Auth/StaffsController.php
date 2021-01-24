@@ -12,9 +12,8 @@ class StaffsController extends Controller
 {
    protected function create()
     {
-         $staff = new Staff;
+        $staff = new Staff;
         
-        // 利用者作成ビューを表示
         return view('staff.auth.staffs_create', [
             'staff' => $staff,
         ]);
@@ -23,7 +22,6 @@ class StaffsController extends Controller
     
     public function store(Request $request)
     {
-        // バリデーション
         $request->validate([
             'last_name'           => 'required|string|max:255',
             'first_name'          => 'required|string|max:255',
@@ -49,17 +47,14 @@ class StaffsController extends Controller
    
         public function index()
     {
-        // スタッフ一覧をidの降順で取得
         $staffs = Staff::orderBy('last_name_hiragana')->paginate(100);
 
-        // スタッフ一覧ビューでそれを表示
         return view('staff.auth.staffs_index', [
             'staffs' => $staffs,
         ]);
     }
     
     
-    //スタッフアカウント編集    
     public function edit($id)
     {
         $staff = Staff::findOrFail($id);
@@ -69,7 +64,7 @@ class StaffsController extends Controller
         ]);
     }
     
-    // スタッフアカウント情報の「更新処理」
+
     public function update(Request $request, $id)
     {
         $staff = Staff::findOrFail($id);
@@ -88,7 +83,6 @@ class StaffsController extends Controller
     }
     
     
-    // スタッフアカウントの削除
     public function destroy($id)
     {
     
@@ -98,6 +92,4 @@ class StaffsController extends Controller
     
         return redirect('staff/staffs');
     }
-
-    
 }

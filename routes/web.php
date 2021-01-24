@@ -6,8 +6,7 @@ Route::get('/', function () {
 
 
 
-
-//利用者
+//-----------利用者-----------------------------------------------------------------------
 Route::namespace('User')->prefix('user')->name('user.')->group(function () {
 
     //ログイン認証関連
@@ -16,27 +15,19 @@ Route::namespace('User')->prefix('user')->name('user.')->group(function () {
         'reset'    => false,
         'verify'   => false
     ]);
-    
 
     //ログイン認証後
     Route::middleware('auth:user')->group(function () {
-
-        //TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
-        
-        //出欠確認データ
-        Route::resource('user/attendance', 'Auth\AttendanceController');
-        
-        //利用者のメッセージ
-        Route::resource('messages', 'Auth\UserMessagesController');
+        Route::resource('user/attendance', 'Auth\AttendanceController', ['only' => ['show', 'update']]);
+        Route::resource('room/{id}/messages', 'Auth\MessageController', ['only' => ['index', 'store', 'destroy']]);
     });
 });
 
 
 
 
-
-//スタッフ
+//-----------スタッフ----------------------------------------------------------------------
 Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
 
     //ログイン認証関連
@@ -46,14 +37,10 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         'verify'   => false
     ]);
     
-
     //ログイン認証後
     Route::middleware('auth:staff')->group(function () {
-
-        //TOPページ
         Route::resource('home', 'HomeController', ['only' => 'index']);
         
-        //スタッフ情報
         Route::get('staffs', 'Auth\StaffsController@index')->name('staffs.index');
         Route::get('staffs/create', 'Auth\StaffsController@create')->name('staffs.create');
         Route::post('staffs/store', 'Auth\StaffsController@store')->name('staffs.store');
@@ -61,7 +48,6 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         Route::put('staffs/{id}/update', 'Auth\StaffsController@update')->name('staffs.update');
         Route::delete('staffs/{id}/destroy', 'Auth\StaffsController@destroy')->name('staffs.destroy');
         
-        //利用者情報
         Route::get('users', 'Auth\UsersController@index')->name('users.index');
         Route::get('users/create', 'Auth\UsersController@create')->name('users.create');
         Route::post('users/store', 'Auth\UsersController@store')->name('users.store');
@@ -70,16 +56,10 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         Route::get('users/{id}/show', 'Auth\UsersController@show')->name('users.show');
         Route::delete('users/{id}/destroy', 'Auth\UsersController@destroy')->name('users.destroy');
         
-        //スタッフのメッセージ
-        Route::resource('messages', 'Auth\StaffMessagesController',);
-        
-        //スタッフから利用者へのメッセージ
-        Route::post('messages/for_users/{id}/store', 'Auth\StaffMessageForUserController@store')->name('message.for.user.store');
-        Route::delete('messages/for_users/{id}/destroy', 'Auth\StaffMessageForUserController@destroy')->name('message.for.user.destroy');
+        Route::resource('room/{id}/messages', 'Auth\MessageController', ['only' => ['store', 'destroy']]);
         
         Route::name('user.')->group(function () {
-            //利用者出欠確認情報
-            Route::resource('user/attendances', 'Auth\AttendanceController');
+            Route::resource('user/attendances', 'Auth\AttendanceController', ['only' => ['store', 'index', 'destroy']]);
         });
     });
 });

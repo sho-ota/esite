@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Http\Controllers\User\Auth;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Staff;
+use App\Models\Message;
+use App\Models\MessageRoom;
+
+class MessageRoomController extends Controller
+{
+    public function show($id)
+    {
+        $message_room = MessageRoom::findOrFail($id);
+        
+        return view('', [
+            'message_room' => $message_room,
+        ]);
+    }
+}

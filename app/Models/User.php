@@ -10,7 +10,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-
     protected $fillable = [
         'last_name', 'first_name', 'last_name_hiragana', 'first_name_hiragana', 'email', 'password',
     ];
@@ -26,7 +25,6 @@ class User extends Authenticatable
     ];
     
     
-    //この利用者が持つ出欠確認結果
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
@@ -35,17 +33,13 @@ class User extends Authenticatable
     
     public function user_messages()
     {
-        return $this->hasMany(UserMessage::class);
+        return $this->belongsToMany(Message::class, 'user_messages', 'user_id', 'message_id')->withTimestamps();
     }
     
-    public function message_from_staffs()
+    
+    public function sent_user_messages($messagesId)
     {
-        return $this->belongsToMany(StaffMessage::class, 'staff_message_for_users', 'user_id', 'staff_message_id')->withTimestamps();
+        $this->user_messages()->attach($messagesId);
+        return true;
     }
-    
-    public function loadRelationshipCounts()
-    {
-        $this->loadCount('user_messages');
-    }
-    
 }

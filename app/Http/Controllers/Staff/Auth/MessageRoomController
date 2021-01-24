@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Http\Controllers\Staff\Auth;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Staff;
+use App\Models\Message;
+use App\Models\MessageRoom;
+
+class MessageRoomController extends Controller
+{
+                                /*
+                                public function index()
+                                {
+                                    $data = [];
+                                    if (\Auth::check()) { // 認証済みの場合
+                                        // 認証済みユーザを取得
+                                        $message_room = MessageRoom::all();
+                                dd($message_room);
+                                        $data = [
+                                            'message_room' => $message_room,
+                                        ];
+                                    }
+                                    return back($data);
+                                    //return view('staff.auth.staff_messages', $data);
+                                }
+                                */
+    /*
+    protected function create()
+    {
+        $message_room = new MessageRoom;
+        //$message = new Message;
+        
+        // 利用者作成ビューを表示
+        return view('staff.auth.user_show', [
+            'message_room' => $message_room,
+            //'message' => $message,
+        ]);
+    }
+    
+    public function store(Request $request)
+    {
+        // バリデーション
+        $request->validate([
+            'room_name' => 'required|string|max:100',
+        ]);
+        
+        $message_room = new MessageRoom;
+        $message_room->room_name = $request->room_name;
+        $message_room->save();
+        
+        $message = new Message;
+        $message->message_room_id = $message_room->id;
+        $message->account_type = 1;
+        $message->content = 'メッセージ本文';
+        $message->save();
+     
+        $user = User::findOrFail($request->user_id);
+        $user->sent_user_messages($message->id);
+        
+        return redirect('staff/staffs');
+    }
+    
+    public function show($id)
+    {
+        $message_room = MessageRoom::findOrFail($id);
+        
+        return view('', [
+            'message_room' => $message_room,
+        ]);
+    }
+    
+    public function destroy($id)
+    {
+
+        $message_room = MessageRoom::findOrFail($id);
+
+        $message_room->delete();
+
+        return back();
+    }
+    */
+}

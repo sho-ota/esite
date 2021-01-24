@@ -4,7 +4,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-7">
-{{--@include('staff.auth.nav_tabs')--}}
+{{-----------------------------------------------------------------
+    @include('staff.auth.nav_tabs')
+------------------------------------------------------------------}}
                 <div class="card">
                     <div class="card-header text-center">利用者出欠確認表</div>
     
@@ -67,17 +69,3 @@ HomeController＠indexを動かす記述を書けば良い？--}}
         </div>
     </div>
 @endsection
-
-{{--
-<div class="card-body">
-    <div class="d-flex justify-content-between">
-        <div>
-            <span class="text-muted">{{ $user_message->user->last_name }} {{ $user_message->user->first_name }}</span>
-            <span class="text-muted"> {{ $user_message->created_at }}</span>
-        </div>
-        <div>
-            <span class="text-muted">@include('messages.user.delete')</span>
-        </div>
-    </div>
-</div>
---}}

@@ -9,6 +9,16 @@ use App\Models\UserMessage;
 
 class UserMessagesController extends Controller
 {
+    public function store($id)
+    {
+        // 認証済みユーザ（閲覧者）が、 idのユーザをフォローする
+        \Auth::user()->sent_user_messages($id);
+        // 前のURLへリダイレクトさせる
+        return back();
+    }
+    
+    
+    /*--------------------------------------------------------------------------------------------
     public function index()
     {
         $data = [];
@@ -26,6 +36,7 @@ class UserMessagesController extends Controller
 
         return view('user.auth.user_messages', $data);
     }
+    
 
 
 
@@ -56,5 +67,5 @@ class UserMessagesController extends Controller
         // 前のURLへリダイレクトさせる
         return back();
     }
-
+    --------------------------------------------------------------------------------------------*/
 }

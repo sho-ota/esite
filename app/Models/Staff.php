@@ -31,13 +31,13 @@ class Staff extends Authenticatable
     
     public function staff_messages()
     {
-        return $this->hasMany(StaffMessage::class);
+        return $this->belongsToMany(Message::class, 'staff_messages', 'staff_id', 'message_id')->withTimestamps();
     }
     
     
-    public function loadRelationshipCounts()
+    public function sent_staff_messages($messagesId)
     {
-        $this->loadCount('staff_messages');
+        $this->staff_messages()->attach($messagesId);
+        return true;
     }
-    
 }
