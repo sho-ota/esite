@@ -26,11 +26,14 @@ class HomeController extends Controller
         $message_room_id = $user->user_messages()->first()->message_room_id;
         
         $message_room = MessageRoom::findOrFail($message_room_id);
+        
+        $attendanceLists = ['', '通所する', '在宅ワーク', '施設外', '休む'];
 
         return view('user.home', [
             'attendance' => $attendance,
             'user' => $user,
             'message_room' => $message_room,
+            'attendanceLists' => $attendanceLists,
         ]);
     }
 }

@@ -11,20 +11,16 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-md-4">
             
             {!! Form::open(['route' => 'staff.login']) !!}
                 <div class="form-group">
-                    {!! Form::label('email', 'メール') !!}
-                    {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => "メール"]) !!}
                 </div>
-            
                 <div class="form-group">
-                    {!! Form::label('password', 'パスワード') !!}
-                    {!! Form::password('password', ['class' => 'form-control']) !!}
+                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => "パスワード"]) !!}
                 </div>
-            
-                {!! Form::submit('ログイン', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('ログイン', ['class' => 'btn btn-outline-info btn-block']) !!}
             {!! Form::close() !!}
               
         </div>

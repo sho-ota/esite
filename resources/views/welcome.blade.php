@@ -30,7 +30,10 @@
                                     <div class="links">
                                         <div>{!! link_to('/user/login', 'メンバーの方はこちら', ['class' => 'btn btn-outline-info btn-block mb-2']) !!}</div>
                                         <div>{!! link_to('/staff/login', 'スタッフの方はこちら', ['class' => 'btn btn-outline-info btn-block mb-2']) !!}</div>
-                                        <div>{!! link_to('/staff/register', 'スタッフ登録', ['class' => 'btn btn-outline-info btn-block mb-2']) !!}</div>
+                                        {{-- dd(\App\Models\Staff::first()) --}}
+                                        @if (\App\Models\Staff::first() == null)
+                                            <div>{!! link_to('/staff/register', 'スタッフ登録', ['class' => 'btn btn-outline-info btn-block mb-2']) !!}</div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
