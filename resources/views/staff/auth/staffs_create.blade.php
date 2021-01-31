@@ -5,11 +5,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <div class="text-center mb-3">
+            <div class="text-center mb-5">
                 <h4>スタッフアカウント作成</h4>
-            </div>
-            <div class="mb-4">
-                {!! link_to_route('staff.staffs.index', '戻る', [], ['class' => 'btn btn-outline-info btn-block']) !!}
             </div>
         </div>
     </div>
@@ -45,9 +42,12 @@
                 <div class="form-group">
                     {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => "パスワード（確認）"]) !!}
                 </div>
-                {!! Form::submit('アカウント作成', ['class' => 'btn btn-info btn-block']) !!}
+                {!! Form::submit('アカウント作成', ['class' => 'btn btn-info btn-block mt-3']) !!}
             {!! Form::close() !!}
-                
+            
+            <div class="text-right">
+                {!! link_to_route('staff.staffs.index', '戻る', [], ['class' => 'btn btn-outline-info mt-2']) !!}
+            </div>
         </div>
     </div>
 </div>

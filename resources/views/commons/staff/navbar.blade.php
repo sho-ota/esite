@@ -15,7 +15,7 @@
                 @if (Auth::guard('staff')->check())
                     {{-- ドロップダウンメニュー --}}
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="btn btn-info dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::guard('staff')->user()->last_name }} {{ Auth::guard('staff')->user()->first_name }} <span class="caret"></span>
                         </a>
     
@@ -24,7 +24,10 @@
                                 {{ __('マイページ') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('staff.users.index') }}">
-                                {{ __('ユーザ一覧') }}
+                                {{ __('利用者一覧') }}
+                            </a>
+                            <a class="dropdown-item" href="{{ route('staff.staffs.index') }}">
+                                {{ __('スタッフ一覧') }}
                             </a>
                             <a class="dropdown-item" href="{{ route('staff.logout') }}"
                                onclick="event.preventDefault();

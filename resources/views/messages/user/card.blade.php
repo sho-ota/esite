@@ -20,7 +20,7 @@
             @endif
         </div>
         <div>
-            <p class="mb-0">{!! nl2br(e($message->content)) !!}</p>
+            <p class="mb-0 ">{!! nl2br(e($message->content)) !!}</p>
         </div>
     </div>
 </div>

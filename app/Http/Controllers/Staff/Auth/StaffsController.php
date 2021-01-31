@@ -82,6 +82,15 @@ class StaffsController extends Controller
     */
     }
     
+    public function destroy_show($id)
+    {
+        $staff = Staff::findOrFail($id);
+        
+        return view('staff.auth.staff_destroy_show', [
+            'staff' => $staff,
+        ]);
+    }
+    
     
     public function destroy($id)
     {

@@ -46,6 +46,7 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         Route::post('staffs/store', 'Auth\StaffsController@store')->name('staffs.store');
         Route::get('staffs/{id}/edit', 'Auth\StaffsController@edit')->name('staffs.edit');
         Route::put('staffs/{id}/update', 'Auth\StaffsController@update')->name('staffs.update');
+        Route::get('staffs/{id}/destroy_show', 'Auth\StaffsController@destroy_show')->name('staffs.destroy_show');
         Route::delete('staffs/{id}/destroy', 'Auth\StaffsController@destroy')->name('staffs.destroy');
         
         Route::get('users', 'Auth\UsersController@index')->name('users.index');
@@ -54,9 +55,12 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         Route::get('users/{id}/edit', 'Auth\UsersController@edit')->name('users.edit');
         Route::put('users/{id}/update', 'Auth\UsersController@update')->name('users.update');
         Route::get('users/{id}/show', 'Auth\UsersController@show')->name('users.show');
+        Route::get('users/{id}/destroy_show', 'Auth\UsersController@destroy_show')->name('users.destroy_show');
         Route::delete('users/{id}/destroy', 'Auth\UsersController@destroy')->name('users.destroy');
         
         Route::resource('room/{id}/messages', 'Auth\MessageController', ['only' => ['store', 'destroy']]);
+        
+        Route::get('calendar', 'Auth\CalendarController@show')->name('calendar');;
         
         Route::name('user.')->group(function () {
             Route::resource('user/attendances', 'Auth\AttendanceController', ['only' => ['store', 'index', 'destroy']]);

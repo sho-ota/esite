@@ -5,11 +5,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <div class="text-center mb-3">
+            <div class="text-center mb-5">
                 <h4>{{ $user->last_name }} {{ $user->first_name }}</h4>
-            </div>
-            <div class="mb-4">
-                {!! link_to_route('staff.users.index', '戻る', [], ['class' => 'btn btn-outline-info btn-block']) !!}
             </div>
         </div>
     </div>
@@ -47,13 +44,11 @@
                 {!! Form::submit('アカウント編集', ['class' => 'btn btn-info btn-block']) !!}
             {!! Form::close() !!}
             
-{{--利用者アカウント削除--}}    
-            {!! Form::model($user, ['route' => ['staff.users.destroy', $user->id], 'method' => 'delete']) !!}
-                {{--{!! Form::checkbox('削除する', 'value') !!}--}}
-                {!! Form::submit('アカウント削除', ['class' => 'btn btn-danger']) !!}
-            {!! Form::close() !!}
+            <div class="d-flex justify-content-between">
+                {!! link_to_route('staff.users.destroy_show', 'アカウント削除ページへ移動する', [$user->id], ['class' => 'btn btn-link mt-2']) !!}
+                {!! link_to_route('staff.users.index', '戻る', [], ['class' => 'btn btn-outline-info mt-2']) !!}
+            </div>
             
-                
         </div>
     </div>
 </div>

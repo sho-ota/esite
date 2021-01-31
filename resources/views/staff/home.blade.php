@@ -9,11 +9,11 @@
                     <h4>マイページ</h4>
                 </div>
                 
-                <div class="card bg-light mb-3">
-                    <div class="card-body">
-                        {!! link_to_route('staff.users.index', 'アカウント一覧', [], ['class' => 'btn btn-outline-info btn-block']) !!}
-                    </div>
-                </div>
+{{--------------------------------------------------------------------------------------------------------------------}}
+{{$year_month_day}}
+{{$week_list[$day_of_week]}}
+{{--------------------------------------------------------------------------------------------------------------------}}
+                
                 
                 <div class="card bg-light mb-3">
                     <div class="card-body">
@@ -31,30 +31,28 @@ HomeController＠indexを動かす記述を書けば良い？--}}
                     </div>
                 </div>
                 
+{!! Form::model("カレンダー", ['route' => 'staff.calendar', 'method' => 'get']) !!}
+    {!! Form::submit("カレンダー", ['class' => 'btn btn-outline-info']) !!}
+{!! Form::close() !!}
+                
                 <div class="text-center">
                     @if (count($what_days) > 0)
-                        <table class="table table-bordered">
-                            <tbody>
-                                @foreach ($what_days as $what_day)
-                                <tr>
-                                    <td class="d-flex justify-content-center">
-                                        <div class="mr-3">
-                                            {!! Form::model($what_day, ['route' => ['staff.user.attendances.index', $what_day->what_day], 'method' => 'get']) !!}
-                                                {!! Form::hidden('what_day',$what_day->what_day) !!}
-                                                {!! Form::submit($what_day->what_day, ['class' => 'btn btn-info btn-block btn-sm']) !!}
-                                            {!! Form::close() !!}
-                                        </div>
-                                        <div>
-                                            {!! Form::model($what_day, ['route' => ['staff.user.attendances.destroy',$what_day->what_day], 'method' => 'delete']) !!}
-                                                {!! Form::hidden('what_day',$what_day->what_day) !!}
-                                                {!! Form::submit("削除", ['class' => 'btn btn-outline-danger btn-sm']) !!}
-                                            {!! Form::close() !!}
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        @foreach ($what_days as $what_day)
+                            <div class="d-flex justify-content-center">
+                                <div class="">
+                                    {!! Form::model($what_day, ['route' => ['staff.user.attendances.index', $what_day->what_day], 'method' => 'get']) !!}
+                                        {!! Form::hidden('what_day',$what_day->what_day) !!}
+                                        {!! Form::submit($what_day->what_day, ['class' => 'btn btn-link']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                                <div>
+                                    {!! Form::model($what_day, ['route' => ['staff.user.attendances.destroy',$what_day->what_day], 'method' => 'delete']) !!}
+                                        {!! Form::hidden('what_day',$what_day->what_day) !!}
+                                        {!! Form::submit("削除", ['class' => 'btn btn-link']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </div>
+                        @endforeach
                     @endif
                 </div>
             </div>
