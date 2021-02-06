@@ -17,17 +17,21 @@ class AttendanceController extends Controller
     */
     public function store(Request $request)
     {
+        $request_what_day = $request->input('what_day');
+
         $users = User::all();
-        
+
         foreach ($users as $user) {
-            $user->attendances()->create([
-                'what_day' => $request->what_day,
-                //selectカラムに初期値を設定
-                'select' => '0',
-            ]);
+            if(!$user->attendances()->where('what_day', $request_what_day)->exists()) {
+                $user->attendances()->create([
+                    'what_day' => $request_what_day,
+                    //selectカラムに初期値を設定
+                    'select' => '0',
+                ]);
+            }
         }
         
-        return view('staff.home');
+        return redirect('staff/home');
         
     }
     

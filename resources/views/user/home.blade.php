@@ -6,12 +6,18 @@
             <div class="col-md-6">
                 <div class="card bg-light mb-2">
                     <div class="card-body">
-                        <h5 class="mb-3">{{ $attendance->what_day }} {{ $week_list[$day_of_week] }}　{{ $user->last_name }} {{ $user->first_name }}　通所スタンプ</h5>
+                        <h5 class="mb-3">{{ $year_month_day }} {{ $week_list[$day_of_week] }}　{{ $user->last_name }} {{ $user->first_name }}　通所スタンプ</h5>
                         
+                        @if($user->attendances()->where('what_day', $year_month_day)->exists())
                         {!! Form::model($attendance, ['route' => ['user.attendance.update', $attendance->id], 'method' => 'put']) !!}
                                 {!! Form::select('select', $attendanceLists, $attendance->select)!!}
                                 {{ $attendance->updated_at }}
                         {!! Form::submit('更新', ['class' => 'btn btn-info btn-block mt-3']) !!}
+                        
+{{--  動作確認--}}
+<div>{{ $attendance }}</div>
+{{--  /動作確認--}}
+                        @endif
                         
                         {{-----------------------------------------------------------------------------------------------------------
                         @foreach ($attendanceLists as $key => $value)
@@ -25,9 +31,7 @@
                         {!! link_to_route('user.messages.index','メッセージルームid'.' '.$message_room->id, [$message_room->id], ['class' => 'btn btn-outline-info']) !!}
                     </div>
                 </div>
-{{--  動作確認--}}
-<div>{{ $attendance }}</div>
-{{--  /動作確認--}}
+
             </div>
         </div>
     </div>

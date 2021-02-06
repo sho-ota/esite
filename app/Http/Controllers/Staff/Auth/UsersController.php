@@ -84,7 +84,13 @@ class UsersController extends Controller
         $day_of_week = $today->dayOfWeek;
         $week_list = ['0' => '日', '1' => '月', '2' => '火', '3' => '水', '4' => '木', '5' => '金', '6' => '土'];
     
-        $attendance = $user->attendances()->where('what_day', $year_month_day)->get()[0];
+        if($user->attendances()->where('what_day', $year_month_day)->exists()) {
+            $attendance = $user->attendances()->where('what_day', $year_month_day)->get()[0];
+        }else{
+            $attendance = null;
+        }
+    
+        //$attendance = $user->attendances()->where('what_day', $year_month_day)->get()[0];
         $attendanceList = ['未入力', '通所する', '在宅ワーク', '施設外', '休む'];
 
         $message_room_id = $user->user_messages()->first()->message_room_id;
@@ -99,6 +105,7 @@ class UsersController extends Controller
             'message_room_id' => $message_room_id,
             'day_of_week' => $day_of_week,
             'week_list' => $week_list,
+            'year_month_day' => $year_month_day,
         ]);
     }
 

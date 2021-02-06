@@ -60,7 +60,7 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         
         Route::resource('room/{id}/messages', 'Auth\MessageController', ['only' => ['store', 'destroy']]);
         
-        Route::get('calendar', 'Auth\CalendarController@show')->name('calendar');;
+        //Route::get('calendar', 'Auth\CalendarController@show')->name('calendar');;
         
         Route::name('user.')->group(function () {
             Route::resource('user/attendances', 'Auth\AttendanceController', ['only' => ['store', 'index', 'destroy']]);

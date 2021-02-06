@@ -11,27 +11,12 @@
                         <h5>{{$request_what_day}} 利用者出欠確認表</h5>
                             {{-- 通所チェックページへのリンク
                             {!! link_to_route('staff.users.create', '通所チェック', [], ['class' => 'btn btn-primary']) !!} --}}
+                            {!! Form::model($request_what_day, ['route' => ['staff.user.attendances.destroy',$request_what_day], 'method' => 'delete']) !!}
+                                {!! Form::hidden('what_day',$request_what_day) !!}
+                                {!! Form::submit("削除", ['class' => 'btn btn-link']) !!}
+                            {!! Form::close() !!}
                     </div>
                 </div>
-                
-                {{--
-                @if (count($attendances) > 0)
-                    <ul class="list-unstyled">
-                        @foreach ($attendances as $attendance)
-                            <li class="media mb-3 ">
-                                <div class="media-body w-100">
-                                    <div class="card bg-light">
-                                        <div class="card-body">
-                                            {!! link_to_route('staff.users.show', $usersList[$attendance->user_id]["last_name"]." ".$usersList[$attendance->user_id]["first_name"], [$usersList[$attendance->user_id]]) !!}
-                                            {{$attendanceList[$attendance->select]}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-                --}}
                 
                 @if (count($attendances) > 0)
                     <table class="table table-sm table-striped">

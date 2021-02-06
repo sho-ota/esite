@@ -19,15 +19,22 @@ class HomeController extends Controller
     public function index()
     {
         $user = \Auth::user();
-        
+
         $today = Carbon::today();
         $year_month_day = $today->toDateString();
         $day_of_week = $today->dayOfWeek;
         $week_list = ['0' => '日', '1' => '月', '2' => '火', '3' => '水', '4' => '木', '5' => '金', '6' => '土'];
-    
-        $attendance = $user->attendances()->where('what_day', $year_month_day)->get()[0];
+
+//dd($user->attendances()->where('what_day', $year_month_day)->exists());
+
+        if($user->attendances()->where('what_day', $year_month_day)->exists()) {
+            $attendance = $user->attendances()->where('what_day', $year_month_day)->get()[0];
+        }else{
+            $attendance = null;
+        }
+
         $attendanceLists = ['0' => '選択してください', '1' => '通所する', '2' => '在宅ワーク', '3' => '施設外', '4' => '休む'];
-        
+
         $message_room_id = $user->user_messages()->first()->message_room_id;
         $message_room = MessageRoom::findOrFail($message_room_id);
         
@@ -38,6 +45,7 @@ class HomeController extends Controller
             'attendanceLists' => $attendanceLists,
             'day_of_week' => $day_of_week,
             'week_list' => $week_list,
+            'year_month_day' => $year_month_day,
         ]);
     }
 }

@@ -7,7 +7,12 @@
                 <div class="card bg-light mb-2">
                     <div class="card-body">
                         <h3>{{ $user->last_name }} {{ $user->first_name }}</h3>
-                        <div>出欠確認：{{ $attendance->what_day }} {{ $week_list[$day_of_week] }} {{$attendanceList[$attendance->select]}}</div>
+        
+                        @if($user->attendances()->where('what_day', $year_month_day)->exists())
+                            <div>出欠確認：{{ $attendance->what_day }} {{ $week_list[$day_of_week] }} {{$attendanceList[$attendance->select]}}</div>
+                        @else
+                            <div>出欠確認：{{ $year_month_day }} {{ $week_list[$day_of_week] }}</div>
+                        @endif
                     </div>
                 </div>
 

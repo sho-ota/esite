@@ -33,6 +33,9 @@ class HomeController extends Controller
         ->select('what_day')
         ->groupBy('what_day')
         ->get();
+
+        $max_what_days = count($what_days)-1;
+
         
         // staff.homeのviewを呼び出し、そこに変数を渡す。
         return view('staff.home', [
@@ -40,6 +43,7 @@ class HomeController extends Controller
             'year_month_day' => $year_month_day,
             'day_of_week' => $day_of_week,
             'week_list' => $week_list,
+            'max_what_days' => $max_what_days,
         ]);
     }
 }
