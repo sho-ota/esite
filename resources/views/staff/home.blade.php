@@ -25,6 +25,7 @@ HomeController＠indexを動かす記述を書けば良い？--}}
                             {!! Form::open(['route' => 'staff.user.attendances.store']) !!}
                                 <div class="input-group mb-3">
                                     {!! Form::date('what_day', old('what_day'), ['class' => '']) !!}
+                                    {{--{!! Form::text('what_day', old('what_day'), ['class' => '']) !!}--}}
                                     <div class="input-group-append">
                                         {!! Form::submit('新規作成', ['class' => 'btn btn-outline-info btn-sm']) !!}
                                     </div>
@@ -38,18 +39,22 @@ HomeController＠indexを動かす記述を書けば良い？--}}
     {!! Form::submit("カレンダー", ['class' => 'btn btn-outline-info']) !!}
 {!! Form::close() !!}
 --}}            
+{!! Form::model("test", ['route' => 'staff.test.index', 'method' => 'get']) !!}
+    {!! Form::submit("test", ['class' => 'btn btn-outline-info']) !!}
+{!! Form::close() !!}
                 <div class="text-center">
+                    {{--------------------------------------------------------------------------------------}}
                     @if (count($what_days) > 0)
                         <div class="card bg-light mb-2">
                             <div class="card-body">
-                                @for ($i = $max_what_days; $i > 0; $i--)
+                                @foreach ($what_days as $what_day)
                                     <div class="d-flex justify-content-center">
-                                        {!! Form::model($what_days[$i]->what_day, ['route' => ['staff.user.attendances.index', $what_days[$i]->what_day], 'method' => 'get']) !!}
-                                            {!! Form::hidden('what_day',$what_days[$i]->what_day) !!}
-                                            {!! Form::submit($what_days[$i]->what_day, ['class' => 'btn btn-link']) !!}
+                                        {!! Form::model($what_day->what_day, ['route' => ['staff.user.attendances.index', $what_day->what_day], 'method' => 'get']) !!}
+                                            {!! Form::hidden('what_day',$what_day->what_day) !!}
+                                            {!! Form::submit($what_day->what_day, ['class' => 'btn btn-link']) !!}
                                         {!! Form::close() !!}
                                     </div>
-                                @endfor
+                                @endforeach
                             </div>
                         </div>
                     @endif

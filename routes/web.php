@@ -65,5 +65,7 @@ Route::namespace('Staff')->prefix('staff')->name('staff.')->group(function () {
         Route::name('user.')->group(function () {
             Route::resource('user/attendances', 'Auth\AttendanceController', ['only' => ['store', 'index', 'destroy']]);
         });
+        
+        Route::resource('test', 'Auth\TestController');
     });
 });

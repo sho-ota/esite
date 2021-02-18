@@ -30,6 +30,7 @@ class HomeController extends Controller
         $week_list = ['0' => '日', '1' => '月', '2' => '火', '3' => '水', '4' => '木', '5' => '金', '6' => '土'];
         
         $what_days = DB::table('attendances')
+        ->orderBy('what_day', 'desc')
         ->select('what_day')
         ->groupBy('what_day')
         ->get();
